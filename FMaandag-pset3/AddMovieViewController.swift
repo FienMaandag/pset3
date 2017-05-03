@@ -9,13 +9,14 @@
 import UIKit
 
 class AddMovieViewController: UIViewController {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
     @IBOutlet weak var plotLabel: UITextView!
     @IBOutlet weak var posterImage: UIImageView!
     var url: URL?
+    var movies = [URL?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +64,13 @@ class AddMovieViewController: UIViewController {
     }
     
     @IBAction func addMovieButton(_ sender: UIButton) {
-        // TO DO
-        // add movie to saved list
-        // return to start page
+        // TO DO add movie to saved list
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let firstVC = segue.destination as? ViewController{
+            movies.append(url)
+            firstVC.movies = movies
+        }
+    }
 }

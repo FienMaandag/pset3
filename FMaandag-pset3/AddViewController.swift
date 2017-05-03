@@ -10,12 +10,16 @@ import UIKit
 
 class AddViewController: UIViewController {
     var url: URL?
+    var movies = [URL?]()
     
     @IBOutlet weak var inputTitle: UITextField!
  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Search"
+
+        // TO DO add functionalities with year?
+        // TO DO add functionalities with search into table view
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +32,8 @@ class AddViewController: UIViewController {
             let emptyUrl = "https://omdbapi.com/?t="
             let url = URL(string: emptyUrl + searchTitle!)
             addMovieVC.url = url
+            
+            addMovieVC.movies = movies
         }
     }
 }

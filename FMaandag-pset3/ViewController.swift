@@ -12,39 +12,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
 
-    // change into saved movies
-    let movies = ["Lion King", "Alladin", "Tarzan"]
-    let year = [
-        "Lion King": "1994",
-        "Alladin": "1992",
-        "Tarzan": "1999"]
+    var movies = [URL?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Your movies"
-
-        let url = URL(string: "https://omdbapi.com/?t=bean")
+        self.navigationItem.hidesBackButton = true
         
-        URLSession.shared.dataTask(with:url!)  { (data, response, error) in
-            if error != nil {
-                print(error ?? "error")
-            } else {
-                do {
-                    
-                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                    let title = parsedData["Title"] as! String?
-                print(title)
-                    print("hey")
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-    }.resume()
-
+        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,24 +35,61 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
         as! MovieCell
         
-        cell.movieTitle.text = movies[indexPath.row]
+        URLSession.shared.dataTask(with:movies[indexPath.row]!)  { (data, response, error) in
+            if error != nil {
+                print(error ?? "error")
+            }
+                
+            else {
+                do{
+                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                    let title = parsedData["Title"] as! String?
+                    let year = parsedData["Year"] as! String?
+                    let img = parsedData["Poster"] as! String?
+                    
+                    let imgUrl = URL(string: img!)
+                    let data = try? Data(contentsOf: imgUrl!)
+                    
+                    DispatchQueue.global().async {
+                        DispatchQueue.main.async {
+                            cell.movieTitle.text = title!
+                            cell.movieYear.text = year!
+                            cell.moviePoster.image = UIImage(data: data!)
+                        }
+                    }
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+            }.resume()
         
-        if let year = year[movies[indexPath.row]] {
-            cell.movieYear.text = year
-        }
-        else{
-            cell.movieYear.text = ""
-        }
         return cell
+    }
+    
+    // http://stackoverflow.com/questions/3309484/uitableviewcell-show-delete-button-on-swipe
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            // remove the item from the data model
+            movies.remove(at: indexPath.row)
+            
+            // delete the table view row
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let indexPath = tableView.indexPathForSelectedRow
-        
-        if let movieVC = segue.destination as? MovieViewController{
-            movieVC.movieTitle = movies[(indexPath?.row)!]
+        if let addVC = segue.destination as? AddViewController{
+            addVC.movies = movies
         }
+        
+        // let indexPath = tableView.indexPathForSelectedRow
+        // if let movieVC = segue.destination as? MovieViewController{
+        //    movieVC.movieTitle = movies[(indexPath?.row)!]
+        //}
     }
 
 }

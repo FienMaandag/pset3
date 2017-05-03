@@ -10,16 +10,14 @@ import UIKit
 
 class MovieViewController: UIViewController {
 
-    var movieTitle: String?
+    // var movieTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = movieTitle
-        // Do any additional setup after loading the view.
+        // self.navigationItem.title = movieTitle
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

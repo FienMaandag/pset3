@@ -12,10 +12,8 @@
 		212CDE951EAA30E800C4DDA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212CDE931EAA30E800C4DDA1 /* Main.storyboard */; };
 		212CDE971EAA30E800C4DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212CDE961EAA30E800C4DDA1 /* Assets.xcassets */; };
 		212CDE9A1EAA30E800C4DDA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212CDE981EAA30E800C4DDA1 /* LaunchScreen.storyboard */; };
-		212CDEA21EAA3F6700C4DDA1 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDEA11EAA3F6700C4DDA1 /* MovieViewController.swift */; };
 		212CDEA61EAA419B00C4DDA1 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDEA51EAA419B00C4DDA1 /* MovieCell.swift */; };
 		212CDEA81EAA541100C4DDA1 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDEA71EAA541100C4DDA1 /* AddViewController.swift */; };
-		212CDEAA1EAA5F5E00C4DDA1 /* AddMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDEA91EAA5F5E00C4DDA1 /* AddMovieCell.swift */; };
 		212CDEAC1EAA5F9E00C4DDA1 /* AddMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDEAB1EAA5F9E00C4DDA1 /* AddMovieViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,10 +25,8 @@
 		212CDE961EAA30E800C4DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		212CDE991EAA30E800C4DDA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		212CDE9B1EAA30E800C4DDA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		212CDEA11EAA3F6700C4DDA1 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		212CDEA51EAA419B00C4DDA1 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		212CDEA71EAA541100C4DDA1 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
-		212CDEA91EAA5F5E00C4DDA1 /* AddMovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMovieCell.swift; sourceTree = "<group>"; };
 		212CDEAB1EAA5F9E00C4DDA1 /* AddMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMovieViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,11 +62,9 @@
 			children = (
 				212CDE8F1EAA30E800C4DDA1 /* AppDelegate.swift */,
 				212CDE911EAA30E800C4DDA1 /* ViewController.swift */,
-				212CDEA11EAA3F6700C4DDA1 /* MovieViewController.swift */,
 				212CDEA71EAA541100C4DDA1 /* AddViewController.swift */,
 				212CDEAB1EAA5F9E00C4DDA1 /* AddMovieViewController.swift */,
 				212CDEA51EAA419B00C4DDA1 /* MovieCell.swift */,
-				212CDEA91EAA5F5E00C4DDA1 /* AddMovieCell.swift */,
 				212CDE931EAA30E800C4DDA1 /* Main.storyboard */,
 				212CDE961EAA30E800C4DDA1 /* Assets.xcassets */,
 				212CDE981EAA30E800C4DDA1 /* LaunchScreen.storyboard */,
@@ -157,8 +151,6 @@
 				212CDE901EAA30E800C4DDA1 /* AppDelegate.swift in Sources */,
 				212CDEAC1EAA5F9E00C4DDA1 /* AddMovieViewController.swift in Sources */,
 				212CDEA61EAA419B00C4DDA1 /* MovieCell.swift in Sources */,
-				212CDEAA1EAA5F5E00C4DDA1 /* AddMovieCell.swift in Sources */,
-				212CDEA21EAA3F6700C4DDA1 /* MovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
