@@ -11,15 +11,13 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-
+    
     var movies = [URL?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Your movies"
         self.navigationItem.hidesBackButton = true
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,7 +29,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        tableView.allowsSelection = false 
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
         as! MovieCell
         
@@ -85,11 +84,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let addVC = segue.destination as? AddViewController{
             addVC.movies = movies
         }
-        
-        // let indexPath = tableView.indexPathForSelectedRow
-        // if let movieVC = segue.destination as? MovieViewController{
-        //    movieVC.movieTitle = movies[(indexPath?.row)!]
-        //}
     }
 
 }

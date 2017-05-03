@@ -22,10 +22,9 @@ class AddMovieViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Add Movie"
         
-        // Loaded late
         URLSession.shared.dataTask(with:url!)  { (data, response, error) in
             if error != nil {
-                // TO DO add error messages
+                // TO DO add error message
                 print(error ?? "error")
             }
                 
@@ -61,10 +60,6 @@ class AddMovieViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func addMovieButton(_ sender: UIButton) {
-        // TO DO add movie to saved list
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
