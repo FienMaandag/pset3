@@ -16,15 +16,32 @@ class AddMovieViewController: UIViewController {
     @IBOutlet weak var plotLabel: UITextView!
     @IBOutlet weak var posterImage: UIImageView!
     var url: URL?
-    var movies = [URL?]()
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        var existing = UserDefaults.standard.array(forKey: "movies") as? [String] ?? []
+        existing.append(url!.absoluteString)
+        UserDefaults.standard.set(existing, forKey: "movies")
+        
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Add Movie"
-        
+
         URLSession.shared.dataTask(with:url!)  { (data, response, error) in
             if error != nil {
-                // TO DO add error message
+                guard let responseData = data else{
+                    let alertController = UIAlertController(title: "Error", message: "This movie is not found, please try again", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> navigationController?.popToRootViewController(animated: true)
+                        // Void in
+                    }
+                    
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
                 print(error ?? "error")
             }
                 
@@ -51,7 +68,6 @@ class AddMovieViewController: UIViewController {
                     }
                     
                 } catch let error as NSError {
-                    // TO DO error messages
                     print(error)
                 }
             }
@@ -60,12 +76,5 @@ class AddMovieViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let firstVC = segue.destination as? ViewController{
-            movies.append(url)
-            firstVC.movies = movies
-        }
     }
 }

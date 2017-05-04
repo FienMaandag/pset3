@@ -10,7 +10,6 @@ import UIKit
 
 class AddViewController: UIViewController {
     var url: URL?
-    var movies = [URL?]()
     
     @IBOutlet weak var inputTitle: UITextField!
  
@@ -32,8 +31,6 @@ class AddViewController: UIViewController {
             let emptyUrl = "https://omdbapi.com/?t="
             let url = URL(string: emptyUrl + searchTitle!)
             addMovieVC.url = url
-            
-            addMovieVC.movies = movies
         }
     }
 }

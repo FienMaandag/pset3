@@ -12,7 +12,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var movies = [URL?]()
+    var movies: [String] {
+        return UserDefaults.standard.array(forKey: "movies") as? [String] ?? []
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+    }
+    
+    // TO DO add user delegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
         as! MovieCell
         
-        URLSession.shared.dataTask(with:movies[indexPath.row]!)  { (data, response, error) in
+        URLSession.shared.dataTask(with: URL(string: movies[indexPath.row])!)  { (data, response, error) in
             if error != nil {
                 print(error ?? "error")
             }
@@ -71,18 +81,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if editingStyle == .delete {
             
-            // remove the item from the data model
-            movies.remove(at: indexPath.row)
+            var existing = UserDefaults.standard.array(forKey: "movies") as? [String] ?? []
+            existing.remove(at: indexPath.row)
+            UserDefaults.standard.set(existing, forKey: "movies")
             
             // delete the table view row
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let addVC = segue.destination as? AddViewController{
-            addVC.movies = movies
         }
     }
 
